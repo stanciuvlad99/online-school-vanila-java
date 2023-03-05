@@ -1,0 +1,5 @@
+1,Introducere in filosofie,Departamentul de filosofie
+2,Algebra lineara,Departamentul de matematica
+3,Introducere in biologie,Departamentul de biologie
+4,Istoria artei,Departamentul de arte si istorie
+5,Programare in Python,Departamentul de informatica
