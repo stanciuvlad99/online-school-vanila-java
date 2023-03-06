@@ -9,30 +9,30 @@ import java.util.Scanner;
 public class ControlCourse {
     private ArrayList<Course> courses;
 
-    public ControlCourse(){
-        this.courses =new ArrayList<>();
+    public ControlCourse() {
+        this.courses = new ArrayList<>();
         load();
     }
 
-    private void load(){
+    private void load() {
         try {
             File file = new File("C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\courses.txt");
             Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()){
-                String linie=scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                String linie = scanner.nextLine();
                 Course course = new Course(linie);
                 this.courses.add(course);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     //todo: CRUD
     //functie ce arata daca exista un curs in lista, primeste curs ca parametru
-    public boolean findByNameBoolean(String nume){
-        for (int i=0; i<courses.size(); i++){
-            if (courses.get(i).getName().equals(nume)){
+    public boolean findByNameBoolean(String nume) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getName().equals(nume)) {
                 return true;
             }
         }
@@ -40,21 +40,21 @@ public class ControlCourse {
     }
 
     //functie ce adauga un curs in lista, primeste constructor ca parametru
-    public boolean create(Course course){
-        return findByNameBoolean(course.getName())==false?this.courses.add(course):false;
+    public boolean create(Course course) {
+        return findByNameBoolean(course.getName()) == false ? this.courses.add(course) : false;
     }
 
     //functie ce afiseaza cursurile din lista
-    public void read(){
-        for (int i=0; i<courses.size(); i++) {
+    public void read() {
+        for (int i = 0; i < courses.size(); i++) {
             System.out.println(courses.get(i).descriere());
         }
     }
 
     //functie ce returneaza cursul, primeste nume ca parametru
-    public Course numeCurs(String nume){
-        for (int i=0; i<courses.size(); i++){
-            if (courses.get(i).getName().equals(nume)){
+    public Course numeCurs(String nume) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getName().equals(nume)) {
                 return courses.get(i);
             }
         }
@@ -62,30 +62,31 @@ public class ControlCourse {
     }
 
     //functie ce face update informatiilor, primeste constructor ca parametru
-    public void update(Course course){
+    public void update(Course course) {
         Course update = numeCurs(course.getName());
 
-        if (course.getDepartment().equals("")==false){
+        if (course.getDepartment().equals("") == false) {
             update.setDepartment(course.getDepartment());
         }
-        if ((course.getId()==0)==false){
+        if ((course.getId() == 0) == false) {
             update.setId(course.getId());
         }
     }
 
     //functie ce elimina cusruri din lista
-    public void delete(String nume){
-        for (int i=0; i<courses.size(); i++){
-            if (courses.get(i).getName().equals(nume)){
-                courses.remove(i);
+    public Course delete(String nume) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getName().equals(nume)) {
+                return courses.remove(i);
             }
         }
+        return null;
     }
 
     //todo:functie ce primeste ca parametru  id curs si returneaza cursul cu id respectiv
     public Course findByid(int idCurs) {
-        for (int i=0; i<courses.size(); i++){
-            if (courses.get(i).getId()==idCurs){
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getId() == idCurs) {
                 return courses.get(i);
             }
         }
@@ -93,19 +94,19 @@ public class ControlCourse {
     }
 
     //todo:functie care returneaza dupa nume un curs
-    public Course findByName(String nume){
-        for (int i=0; i<courses.size(); i++){
-            if (courses.get(i).getName().equals(nume)){
-              return courses.get(i);
+    public Course findByName(String nume) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getName().equals(nume)) {
+                return courses.get(i);
             }
         }
         return null;
     }
 
     //todo:functie ce elimina cursul din baza de date, primeste numele cursului ca parametru
-    public Course removeCursByName(String numeCurs){
-        for (int i=0; i<courses.size(); i++){
-            if (courses.get(i).getName().equals(numeCurs)){
+    public Course removeCursByName(String numeCurs) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getName().equals(numeCurs)) {
                 return courses.remove(i);
             }
         }
@@ -113,12 +114,12 @@ public class ControlCourse {
     }
 
     //todo: functie ce returneaza id-ul cursului, primeste nume ca parametru
-    public int idCurs(String name){
-//        for (int i =0; i<courses.size(); i++){
-//            if (courses.get(i).getName().equals(name)){
-//                return courses.
-//            }
-
+    public int idCurs(String name) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getName().equals(name)) {
+                return courses.get(i).getId();
+            }
+        }
         return -1;
     }
 

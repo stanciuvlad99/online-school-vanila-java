@@ -155,7 +155,15 @@ public class ControlEnrolment {
         return  pozitieElementMaxim(frecventaCursurilor());
     }
 
-
+    //todo: functie ce daca studentii participa la un curs, primeste curs id ca parametru
+    public boolean studentiCursanti(int cursId){
+        for (int i=0; i<enrolments.size(); i++){
+            if (enrolments.get(i).getCourseId()==cursId){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }
