@@ -30,6 +30,7 @@ public class ViewAdmin {
         System.out.println("Apasati tasta 2 pentru a elimina un student");
         System.out.println("Apasati tasta 3 pentru a vedea toate cursurile");
         System.out.println("Apasati tasta 4 pentru a elimina un curs");
+        System.out.println("Apasati tasta 5 pentru a face update unui curs");
     }
 
     private void play() {
@@ -51,6 +52,8 @@ public class ViewAdmin {
                 case 4:
                     eliminareCurs();
                     break;
+                case 5:updateCurs();
+                break;
                 default:
                     break;
             }
@@ -99,5 +102,24 @@ public class ViewAdmin {
         }
     }
 
+    private void updateCurs(){
+        System.out.println("Introduceti numele cursului");
+        Scanner scanner = new Scanner(System.in);
+        String numeCurs=scanner.nextLine();
+        Course course = controlCourse.findByName(numeCurs);
+        if (course!=null){
+            System.out.println("Introcuceti noul nume al cursului");
+            String numeNou=scanner.nextLine();
+            controlCourse.updateName(new Course(course.getId(),numeNou,course.getDepartment()));
+            System.out.println("Inreoduceti noul departament al cursului");
+            String departament=scanner.nextLine();
+            System.out.println("Introduceti noul id al cursului");
+            int id=Integer.parseInt(scanner.nextLine());
+            controlCourse.updateIdDepartament(new Course(id,course.getName(),departament));
+            System.out.println("Cursului i s-a facut update");
+        }else {
+            System.out.println("Cursul " + numeCurs + " nu exista");
+        }
+    }
 
 }

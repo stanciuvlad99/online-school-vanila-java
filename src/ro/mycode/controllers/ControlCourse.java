@@ -123,4 +123,42 @@ public class ControlCourse {
         return -1;
     }
 
-}
+//    public Course returnIdCurs(String name){
+//        for (int i=0; i<courses.size(); i++){
+//            if (courses.get(i).getName().equals(name));
+//            return courses.get(i).getId()
+//        }
+//        return null
+//    }
+
+    //todo: functie ce face update cursurilor, primeste constructor ca parametru
+    public void updateIdDepartament(Course course) {
+        Course update=findByName(course.getName());
+        if ((course.getId()==0)==false){
+            update.setId(course.getId());
+        }
+        if (course.getDepartment().equals("")==false){
+            update.setDepartment(course.getDepartment());
+        }
+    }
+
+    //todo: functie ce returneaza departament, primeste nume curs ca parametru
+    public Course returnNumeCurs(String department) {
+        for (int i=0; i<courses.size(); i++){
+            if (courses.get(i).getDepartment().equals(department)){
+                return courses.get(i);
+            }
+        }
+        return null;
+    }
+
+
+    //todo: functie ce face update numelui cursului, primeste constructor ca parametru
+    public void updateName(Course course){
+        Course update = returnNumeCurs(course.getDepartment());
+        if (course.getName().equals("")==false){
+            update.setName(course.getName());
+        }
+    }
+
+    }
