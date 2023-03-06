@@ -38,7 +38,7 @@ public class Main {
 //        controlCourse.read();
 
 
-//        ControlEnrolment controlEnrolment = new ControlEnrolment();
+        ControlEnrolment controlEnrolment = new ControlEnrolment();
 //        controlEnrolment.create(new Enrolment(10,20,30));
 //        controlEnrolment.update(new Enrolment(20,4,20));
 //        controlEnrolment.delete(5);
