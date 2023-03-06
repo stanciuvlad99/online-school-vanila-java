@@ -161,4 +161,19 @@ public class ControlCourse {
         }
     }
 
+    //todo: functie ce adauga un curs in lista, primeste constructor ca parametru
+    public void add(Course course){
+        this.courses.add(course);
+    }
+
+
+    //todo: functie ce genereaza un noi id valid
+    public int nextId(){
+        if (this.courses.size()==0){
+            return -1;
+        }
+        return this.courses.get(this.courses.size()-1).getId()+1;
+    }
+
+
     }

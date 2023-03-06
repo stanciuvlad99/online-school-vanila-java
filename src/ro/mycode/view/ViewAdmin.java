@@ -31,6 +31,7 @@ public class ViewAdmin {
         System.out.println("Apasati tasta 3 pentru a vedea toate cursurile");
         System.out.println("Apasati tasta 4 pentru a elimina un curs");
         System.out.println("Apasati tasta 5 pentru a face update unui curs");
+        System.out.println("Apasati tasta 6 pentru a adauga un concurs");
     }
 
     private void play() {
@@ -54,6 +55,9 @@ public class ViewAdmin {
                     break;
                 case 5:updateCurs();
                 break;
+                case 6:
+                    adugareCurs();
+                    break;
                 default:
                     break;
             }
@@ -119,6 +123,22 @@ public class ViewAdmin {
             System.out.println("Cursului i s-a facut update");
         }else {
             System.out.println("Cursul " + numeCurs + " nu exista");
+        }
+    }
+
+    public void adugareCurs(){
+        System.out.println("Introduceti numele concursului");
+        Scanner scanner = new Scanner(System.in);
+        String numeCurs= scanner.nextLine();
+        Course course = controlCourse.findByName(numeCurs);
+        if (course==null){
+            System.out.println("Inroduceti departamentul");
+            String department=scanner.nextLine();
+            Course course1=new Course(controlEnrolment.nextId(),numeCurs,department);
+            this.controlCourse.add(course1);
+            System.out.println("Cursul a fost adugat cu succes in baza de date");
+        }else {
+            System.out.println("Cursul " + numeCurs+ " exista deja in baza de date");
         }
     }
 
