@@ -79,7 +79,7 @@ public class Student {
     }
 
     public String descriere() {
-        String descriere = "ID-ul persoanei este " + id + ", numele mic este " + firstName + ", numele de familie este " +
+        String descriere = "ID-ul persoanei este " + id + ", prenumele este " + firstName + ", numele de familie este " +
                 lastName + ", email-ul persoanei este " + email + ", varsta este " + age + " de ani si parola este " + password;
         return descriere;
     }
