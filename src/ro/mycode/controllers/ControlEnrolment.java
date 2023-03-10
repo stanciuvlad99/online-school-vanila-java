@@ -91,7 +91,7 @@ public class ControlEnrolment {
     //todo:functie ce genereaza un nou id valabil
     public int nextId() {
         if (this.enrolments.size() == 0) {
-            return 1;
+            return -1;
         }
         return this.enrolments.get(this.enrolments.size() - 1).getId() + 1;
     }

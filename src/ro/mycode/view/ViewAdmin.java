@@ -32,6 +32,7 @@ public class ViewAdmin {
         System.out.println("Apasati tasta 4 pentru a elimina un curs");
         System.out.println("Apasati tasta 5 pentru a face update unui curs");
         System.out.println("Apasati tasta 6 pentru a adauga un concurs");
+        System.out.println("Apasati tasta 7 pentru a adauga un adauga un nou student in baza de date");
     }
 
     private void play() {
@@ -53,11 +54,14 @@ public class ViewAdmin {
                 case 4:
                     eliminareCurs();
                     break;
-                case 5:updateCurs();
-                break;
+                case 5:
+                    updateCurs();
+                    break;
                 case 6:
                     adugareCurs();
                     break;
+                case 7:adaugareStudent();
+                break;
                 default:
                     break;
             }
@@ -106,40 +110,63 @@ public class ViewAdmin {
         }
     }
 
-    private void updateCurs(){
+    private void updateCurs() {
         System.out.println("Introduceti numele cursului");
         Scanner scanner = new Scanner(System.in);
-        String numeCurs=scanner.nextLine();
+        String numeCurs = scanner.nextLine();
         Course course = controlCourse.findByName(numeCurs);
-        if (course!=null){
+        if (course != null) {
             System.out.println("Introcuceti noul nume al cursului");
-            String numeNou=scanner.nextLine();
-            controlCourse.updateName(new Course(course.getId(),numeNou,course.getDepartment()));
+            String numeNou = scanner.nextLine();
+            controlCourse.updateName(new Course(course.getId(), numeNou, course.getDepartment()));
             System.out.println("Inreoduceti noul departament al cursului");
-            String departament=scanner.nextLine();
+            String departament = scanner.nextLine();
             System.out.println("Introduceti noul id al cursului");
-            int id=Integer.parseInt(scanner.nextLine());
-            controlCourse.updateIdDepartament(new Course(id,course.getName(),departament));
+            int id = Integer.parseInt(scanner.nextLine());
+            controlCourse.updateIdDepartament(new Course(id, course.getName(), departament));
             System.out.println("Cursului i s-a facut update");
-        }else {
+        } else {
             System.out.println("Cursul " + numeCurs + " nu exista");
         }
     }
 
-    public void adugareCurs(){
-        System.out.println("Introduceti numele concursului");
+    public void adugareCurs() {
+        System.out.println("Introduceti numele cursului");
         Scanner scanner = new Scanner(System.in);
-        String numeCurs= scanner.nextLine();
+        String numeCurs = scanner.nextLine();
         Course course = controlCourse.findByName(numeCurs);
-        if (course==null){
+        if (course == null) {
             System.out.println("Inroduceti departamentul");
-            String department=scanner.nextLine();
-            Course course1=new Course(controlEnrolment.nextId(),numeCurs,department);
+            String department = scanner.nextLine();
+            Course course1 = new Course(controlEnrolment.nextId(), numeCurs, department);
             this.controlCourse.add(course1);
             System.out.println("Cursul a fost adugat cu succes in baza de date");
-        }else {
-            System.out.println("Cursul " + numeCurs+ " exista deja in baza de date");
+        } else {
+            System.out.println("Cursul " + numeCurs + " exista deja in baza de date");
         }
+    }
+
+    private void adaugareStudent() {
+        System.out.println("Introduceti prenumele studentului");
+        Scanner scanner = new Scanner(System.in);
+        String prenume = scanner.nextLine();
+        System.out.println("Introduceti numele de familie al studentului");
+        String nume = scanner.nextLine();
+        Student student = controlStudent.findByFirstNameLastName(prenume,nume);
+        if (student==null){
+            System.out.println("Introduceti adresa de mail a studentului");
+            String email=scanner.nextLine();
+            System.out.println("Introdduceti parola");
+            String password=scanner.nextLine();
+            System.out.println("Introduceti varsta studentului");
+            int varsta = Integer.parseInt(scanner.nextLine());
+            Student student1 = new Student(controlStudent.nextId(),prenume,nume,email,varsta,password);
+            controlStudent.add(student1);
+            System.out.println("Studentul a fost adugat in baza de date");
+        }else {
+            System.out.println(prenume + " " + nume + " exista deja in baza de date");
+        }
+
     }
 
 }

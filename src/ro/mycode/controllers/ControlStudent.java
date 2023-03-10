@@ -128,6 +128,23 @@ public class ControlStudent {
         return null;
     }
 
+    //todo: functie ce elimina un student, primeste constructor ca parametru
+    public void removeStudent(Student student){
+        this.students.remove(student);
+    }
+
+    //todo: functie ce returneaza id valabil
+    public int nextId(){
+        if (students.size()==0){
+            return -1;
+        }
+        return students.get(students.size()-1).getId()+1;
+    }
+
+    //todo: functie ce adauga un stududent in lista, primeste constructor ca parametru
+    public void add(Student student){
+        this.students.add(student);
+    }
 
 
 }
