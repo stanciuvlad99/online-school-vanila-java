@@ -3,12 +3,11 @@ package ro.mycode.view;
 import ro.mycode.controllers.*;
 import ro.mycode.models.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ViewAdmin {
-
-
-    private Admin admin;
+    private Student student;
     private ControlAdmin controlAdmin;
     private ControlBook controlBook;
     private ControlCourse controlCourse;
@@ -31,8 +30,9 @@ public class ViewAdmin {
         System.out.println("Apasati tasta 3 pentru a vedea toate cursurile");
         System.out.println("Apasati tasta 4 pentru a elimina un curs");
         System.out.println("Apasati tasta 5 pentru a face update unui curs");
-        System.out.println("Apasati tasta 6 pentru a adauga un concurs");
+        System.out.println("Apasati tasta 6 pentru a adauga un concurs in baza de date");
         System.out.println("Apasati tasta 7 pentru a adauga un adauga un nou student in baza de date");
+        System.out.println("Apasati tasta 8 pentru a vedea ce carti are un elev");
     }
 
     private void play() {
@@ -61,6 +61,8 @@ public class ViewAdmin {
                     adugareCurs();
                     break;
                 case 7:adaugareStudent();
+                break;
+                case 8:cartiStudent();
                 break;
                 default:
                     break;
@@ -167,6 +169,24 @@ public class ViewAdmin {
             System.out.println(prenume + " " + nume + " exista deja in baza de date");
         }
 
+    }
+
+    private void cartiStudent(){
+        System.out.println("Inreoduceti prenumele studentului");
+        Scanner scanner = new Scanner(System.in);
+        String firstName=scanner.nextLine();
+        System.out.println("Introduceti numele de familie al studentului");
+        String lastName =scanner.nextLine();
+        Student student = controlStudent.findByFirstNameLastName(firstName,lastName);
+        if (student!=null){
+            ArrayList<Book> books = controlBook.cartiStudent(controlStudent.returnIdStudent(firstName,lastName));
+            for (int i=0; i<books.size(); i++){
+                Book book = controlBook.findByIdStudent(controlStudent.returnIdStudent(firstName,lastName));
+                System.out.println(book.descriere());
+            }
+        }else {
+            System.out.println(firstName +" " + lastName + " nu exista in baza de date");
+        }
     }
 
 }

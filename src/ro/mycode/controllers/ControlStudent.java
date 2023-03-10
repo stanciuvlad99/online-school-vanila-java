@@ -146,6 +146,14 @@ public class ControlStudent {
         this.students.add(student);
     }
 
-
+    //todo: functie ce returneaza id-ul studentului, primeste ca parametru firstName si lastName
+    public int returnIdStudent(String firstName, String lastname){
+        for (int i=0; i<students.size(); i++){
+            if (students.get(i).getFirstName().equals(firstName) && students.get(i).getLastName().equals(lastname)){
+                return students.get(i).getId();
+            }
+        }
+        return -1;
+    }
 }
 
