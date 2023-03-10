@@ -133,19 +133,19 @@ public class ControlCourse {
 
     //todo: functie ce face update cursurilor, primeste constructor ca parametru
     public void updateIdDepartament(Course course) {
-        Course update=findByName(course.getName());
-        if ((course.getId()==0)==false){
+        Course update = findByName(course.getName());
+        if ((course.getId() == 0) == false) {
             update.setId(course.getId());
         }
-        if (course.getDepartment().equals("")==false){
+        if (course.getDepartment().equals("") == false) {
             update.setDepartment(course.getDepartment());
         }
     }
 
     //todo: functie ce returneaza departament, primeste nume curs ca parametru
     public Course returnNumeCurs(String department) {
-        for (int i=0; i<courses.size(); i++){
-            if (courses.get(i).getDepartment().equals(department)){
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getDepartment().equals(department)) {
                 return courses.get(i);
             }
         }
@@ -154,26 +154,28 @@ public class ControlCourse {
 
 
     //todo: functie ce face update numelui cursului, primeste constructor ca parametru
-    public void updateName(Course course){
+    public void updateName(Course course) {
         Course update = returnNumeCurs(course.getDepartment());
-        if (course.getName().equals("")==false){
+        if (course.getName().equals("") == false) {
             update.setName(course.getName());
         }
     }
 
     //todo: functie ce adauga un curs in lista, primeste constructor ca parametru
-    public void add(Course course){
+    public void add(Course course) {
         this.courses.add(course);
     }
 
 
     //todo: functie ce genereaza un noi id valid
-    public int nextId(){
-        if (this.courses.size()==0){
+    public int nextId() {
+        if (this.courses.size() == 0) {
             return -1;
         }
-        return this.courses.get(this.courses.size()-1).getId()+1;
+        return this.courses.get(this.courses.size() - 1).getId() + 1;
     }
 
 
-    }
+
+}
+
