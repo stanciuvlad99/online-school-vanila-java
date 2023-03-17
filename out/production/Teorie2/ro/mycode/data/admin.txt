@@ -3,3 +3,8 @@
 3,alexandruionescu@yahoo.com,4l3x4ndru10n35cu,Alexandru,Ionescu
 4,davidstoica@gmail.com,d2v1dm1h41,David,Stoica
 5,mihaiserban@yahoo.com,m1h4153rb4n,Mihai,Serban
+6,alexandrapopescu@yahoo.com,pa55word1234,Alexandra,Popescu
+7,andreiionescu@yahoo.com,mypass12345,Andrei,Ionescu
+8,mariaradulescu@gmail.com,m@ri@r@dulescu,Maria,Radulescu
+9,radudumitrescu@gmail.com,r@dudumitrescu,Radu,Dumitrescu
+10,ioanacojocareu@hotmail.com,1i@n@cojoc@ru123,Ioana,Cojocaru

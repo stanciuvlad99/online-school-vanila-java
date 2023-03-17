@@ -48,4 +48,8 @@ public class Enrolment {
                 " si id-ul cursului este " + courseId;
         return descriere;
     }
+
+    public String toSave(){
+        return this.id +"," + this.studentId +"," +this.courseId;
+    }
 }

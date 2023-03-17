@@ -1,13 +1,19 @@
 package ro.mycode.models;
 
+import java.io.File;
+import java.util.Scanner;
+
 public class Student {
 
-    private int id=0;
-    private String firstName="";
-    private String lastName="";
-    private String email="";
-    private int age=0;
-    private String password="";
+    private int id = 0;
+    private String firstName = "";
+    private String lastName = "";
+    private String email = "";
+    private int age = 0;
+    private String password = "";
+
+    public Student() {
+    }
 
     public Student(int id, String firstName, String lastName, String email, int age, String password) {
         this.id = id;
@@ -19,14 +25,15 @@ public class Student {
     }
 
 
-    public Student(String student){//5,Radu,Enescu,raduenescu12@gmail.com,25,mosene47!
-        String []alegere=student.split(",");
-        this.id= Integer.parseInt(alegere[0]);
-        this.firstName=alegere[1];
-        this.lastName=alegere[2];
-        this.email=alegere[3];
-        this.age= Integer.parseInt(alegere[4]);
-        this.password=alegere[5];
+    public Student(String student) {//5,Radu,Enescu,raduenescu12@gmail.com,25,mosene47!
+        String[] alegere = student.split(",");
+        this.id = Integer.parseInt(alegere[0]);
+        this.firstName = alegere[1];
+        this.lastName = alegere[2];
+        this.email = alegere[3];
+        this.password = alegere[4];
+        this.age = Integer.parseInt(alegere[5]);
+
 
     }
 
@@ -82,5 +89,9 @@ public class Student {
         String descriere = "ID-ul persoanei este " + id + ", prenumele este " + firstName + ", numele de familie este " +
                 lastName + ", email-ul persoanei este " + email + ", varsta este " + age + " de ani si parola este " + password;
         return descriere;
+    }
+
+    public String toSave() {
+        return this.id + "," + this.firstName + "," + this.lastName + "," + this.email + "," + this.password + "," + this.age;
     }
 }

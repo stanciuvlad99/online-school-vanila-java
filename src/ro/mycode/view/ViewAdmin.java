@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ViewAdmin {
-    private Student student;
+    private Admin admin;
     private ControlAdmin controlAdmin;
     private ControlBook controlBook;
     private ControlCourse controlCourse;
@@ -15,7 +15,8 @@ public class ViewAdmin {
     private ControlStudent controlStudent;
 
 
-    public ViewAdmin() {
+    public ViewAdmin(Admin admin) {
+        this.admin=admin;
         this.controlAdmin = new ControlAdmin();
         this.controlBook = new ControlBook();
         this.controlCourse = new ControlCourse();
@@ -31,8 +32,8 @@ public class ViewAdmin {
         System.out.println("Apasati tasta 4 pentru a elimina un curs");
         System.out.println("Apasati tasta 5 pentru a face update unui curs");
         System.out.println("Apasati tasta 6 pentru a adauga un concurs in baza de date");
-        System.out.println("Apasati tasta 7 pentru a adauga un adauga un nou student in baza de date");
-        System.out.println("Apasati tasta 8 pentru a vedea ce carti are un elev");
+        System.out.println("Apasati tasta 7 pentru a adauga un nou student in baza de date");
+        System.out.println("Apasati tasta 8 pentru a vedea ce carti are un student");
     }
 
     private void play() {

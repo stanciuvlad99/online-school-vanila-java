@@ -1,5 +1,10 @@
 1,1,2020,Moara cu noroc,Ioan Slavici
-2,2,2019,Baltagul,Mihail Sadoveanu
+2,1,2019,Baltagul,Mihail Sadoveanu
 3,3,2022,Ultima noapte de dragoste intaia noapte de razboi,Camil Petrescu
 4,4,2021,Romanul adolescentului miop,Mircea Eliade
 5,5,2023,Amintiri din copilarie,Mihai Eminescu
+6,6,2021,Mizerabilii,Victor Hugo
+7,7,2022,Razboi și pace,Lev Tolstoi
+8,8,2021,Pride and Prejudice,Jane Austen
+9,9,2023,Crima si pedeapsa,Fiodor Dostoievki
+10,10,2022,To Kill a Mockingbird,Harper Lee
