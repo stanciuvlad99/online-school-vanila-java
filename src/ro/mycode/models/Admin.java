@@ -68,7 +68,11 @@ public class Admin {
 
     public String descriere() {
         String descriere = "Id-ul adminului este " + id + ", adresa de mail este " + email + ", iar parola este "
-                + password + ". Perenumele si numele de familie alea adminului sunt" + firstName +" " + lastname;
+                + password + ". Perenumele si numele de familie alea adminului sunt " + firstName +" " + lastname;
         return descriere;
+    }
+
+    public String toSave(){
+        return this.id + "," + this.email + ","+ this.password + "," + this.firstName+ "," + this.lastname;
     }
 }

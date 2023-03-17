@@ -3,12 +3,15 @@ package ro.mycode.controllers;
 import ro.mycode.models.Book;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ControlBook {
 
     private ArrayList<Book>books;
+    private final String FINAL_PATH="C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\books.txt";
 
 
     public ControlBook(){
@@ -18,7 +21,7 @@ public class ControlBook {
 
     private void load(){
         try {
-            File file = new File("C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\books.txt");
+            File file = new File(FINAL_PATH);
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNextLine()){
@@ -156,6 +159,27 @@ public class ControlBook {
         }
     }
 
+    //todo:functie ce afiseaza toate cartile
+    public String toSave(){
+        String carti="";
+        for (int i=0; i<books.size(); i++){
+            carti+=books.get(i).toSave()+"\n";
+        }
+        return carti;
+    }
+
+    //todo: functie ce salveaza in fisier text book
+    public void save(){
+        try {
+            File file = new File(FINAL_PATH);
+            FileWriter fileWriter = new FileWriter(file);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.print(toSave());
+            printWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 }

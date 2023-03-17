@@ -20,8 +20,8 @@ public class ViewStudent {
     private ControlEnrolment controlEnrolment;
 
 
-    public ViewStudent() {
-        this.student = new Student("2,Constantin,Brancoveanu,constantinbranco00@gmail.com,50,metrobranco00");
+    public ViewStudent(Student student) {
+        this.student=student;
         this.controlCourse = new ControlCourse();
         this.controlBook = new ControlBook();
         this.controlEnrolment = new ControlEnrolment();

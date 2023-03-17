@@ -72,4 +72,8 @@ public class Book {
                 year +", titlul catii este " + title + " iar autorul este " + author;
         return descriere;
     }
+
+    public String toSave(){
+        return this.id + ","+this.studentId+","+this.year+","+this.title+","+this.author;
+    }
 }

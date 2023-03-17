@@ -1,5 +1,10 @@
-1,Labus,Georgescu,test@gmail.com,22,pass1234!
-2,Alexandru,Pitesteanu,alexpit@gmail.com,21,alexp2000
-3,Elena,Visan,elenavisan@yahoo.com,19,qwerty1234
-4,Cristian,Dragomir,cristiandrag2005@yahoo.com,18,jordan23@
-5,Radu,Enescu,raduenescu12@gmail.com,25,mosene47!
+1,Labus,Georgescu,test@gmail.com,pass1234!,22
+2,Alexandru,Pitesteanu,alexpit@gmail.com,alexp2000,21
+3,Elena,Visan,elenavisan@yahoo.com,qwerty1234,19
+4,Cristian,Dragomir,cristiandrag2005@yahoo.com,jordan23@,18
+5,Radu,Enescu,raduenescu12@gmail.com,mosene47!,25
+6,Vlad,Andrei,vladandrei@gmail.com,dummypassword,23
+7,Iulian,Smarandache,iuliansmarandache@hotmail.com,dummypassword,20
+8,Iulia,Diaconescu,iuliadiaconescu.com,1ul1@12345,22
+9,Elisa,Pana,elisapana@yahoo.com,powerpuffgirls12,19
+10,Marcel,Pandele,marcelpandele@gmail.com,p@nd3le112,23

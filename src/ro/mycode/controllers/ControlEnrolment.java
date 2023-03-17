@@ -3,12 +3,15 @@ package ro.mycode.controllers;
 import ro.mycode.models.Enrolment;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ControlEnrolment {
 
     private ArrayList<Enrolment> enrolments;
+    private final String FILE_PATH="C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\enrolment.txt";
 
     public ControlEnrolment() {
         this.enrolments = new ArrayList<>();
@@ -17,7 +20,7 @@ public class ControlEnrolment {
 
     private void load() {
         try {
-            File file = new File("C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\enrolment.txt");
+            File file = new File(FILE_PATH);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String linie = scanner.nextLine();
@@ -165,5 +168,26 @@ public class ControlEnrolment {
         return false;
     }
 
+    //todo: functie ce returnaza toate inscrierile
+    public String toSave(){
+        String enrolments="";
+        for (int i = 0; i< this.enrolments.size(); i++){
+            enrolments+= this.enrolments.get(i).toSave()+"\n";
+        }
+        return enrolments;
+    }
+
+    //todo: functie ce salveaza in fisier text enrolment
+    public void save(){
+        try {
+            File file = new File(FILE_PATH);
+            FileWriter fileWriter = new FileWriter(file);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.print(this.toSave());
+            printWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }

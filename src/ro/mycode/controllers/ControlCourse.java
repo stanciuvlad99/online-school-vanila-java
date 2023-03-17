@@ -3,11 +3,14 @@ package ro.mycode.controllers;
 import ro.mycode.models.Course;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ControlCourse {
     private ArrayList<Course> courses;
+    private String FILE_PATH="C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\courses.txt";
 
     public ControlCourse() {
         this.courses = new ArrayList<>();
@@ -16,7 +19,7 @@ public class ControlCourse {
 
     private void load() {
         try {
-            File file = new File("C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\courses.txt");
+            File file = new File(FILE_PATH);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String linie = scanner.nextLine();
@@ -175,7 +178,27 @@ public class ControlCourse {
         return this.courses.get(this.courses.size() - 1).getId() + 1;
     }
 
+    //todo: functie ce returneaza toate cursurile
+    public String toSave(){
+        String cursuri="";
+        for (int i=0; i<courses.size(); i++){
+            cursuri+=courses.get(i).toSave()+"\n";
+        }
+        return cursuri;
+    }
 
+    //todo: functie ce salveaza in fisierul text courses
+    public void save(){
+        try {
+            File file = new File(FILE_PATH);
+            FileWriter fileWriter = new FileWriter(file);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.print(this.toSave());
+            printWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }
 
