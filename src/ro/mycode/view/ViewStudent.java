@@ -30,6 +30,8 @@ public class ViewStudent {
 
 
     private void meniu() {
+        System.out.println("Bine ai venit " + student.getFirstName() + " " + student.getLastName()+"!");
+        System.out.println("");
         System.out.println("Apasati tasta 1 pentru a vedea cursurile");
         System.out.println("Apasati tasta 2 pentru a vedea cursurile l-a care sunteti inscris");
         System.out.println("Apasati tasta 3 pentru a te inscrie la un curs");
