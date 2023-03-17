@@ -1,8 +1,5 @@
 package ro.mycode.models;
 
-import java.io.File;
-import java.util.Scanner;
-
 public class Student {
 
     private int id = 0;

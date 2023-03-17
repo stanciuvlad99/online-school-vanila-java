@@ -1,10 +1,6 @@
 package ro.mycode;
 
-import ro.mycode.controllers.*;
-import ro.mycode.models.*;
-import ro.mycode.view.ViewAdmin;
 import ro.mycode.view.ViewLogin;
-import ro.mycode.view.ViewStudent;
 
 public class Main {
 
@@ -30,8 +26,8 @@ public class Main {
 //        controlAdmin.add(new Admin("10,ioanacojocareu@hotmail.com,1i@n@cojoc@ru123,Ioana,Cojocaru"));
 //        controlAdmin.save();
 
-      ControlCourse course = new ControlCourse();
-      course.read();
+      ViewLogin viewLogin = new ViewLogin();
+      viewLogin.login();
 
 
 

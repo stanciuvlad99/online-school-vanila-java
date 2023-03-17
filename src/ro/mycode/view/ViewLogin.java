@@ -37,7 +37,7 @@ public class ViewLogin {
         }
     }
 
-    private void login(){
+    public void login(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduceti adresa de email");
         String email=scanner.nextLine();
@@ -45,14 +45,12 @@ public class ViewLogin {
         String password=scanner.nextLine();
         Admin admin = controlAdmin.findByEmailPassword(email,password);
         if (admin!=null){
-            System.out.println("Bine ai venit " + admin.getFirstName() + " " + admin.getLastname()+"!");
-            System.out.println("");
+
             ViewAdmin viewAdmin = new ViewAdmin(admin);
         }
         Student student = controlStudent.findByEmailPassword(email,password);
         if (student!=null){
-            System.out.println("Bine ai venit " + student.getFirstName() + " " + student.getLastName()+"!");
-            System.out.println("");
+
             ViewStudent viewStudent = new ViewStudent(student);
         }
     }

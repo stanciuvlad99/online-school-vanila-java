@@ -1,7 +1,10 @@
 package ro.mycode.view;
 
 import ro.mycode.controllers.*;
-import ro.mycode.models.*;
+import ro.mycode.models.Admin;
+import ro.mycode.models.Book;
+import ro.mycode.models.Course;
+import ro.mycode.models.Student;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -26,6 +29,8 @@ public class ViewAdmin {
     }
 
     private void menu() {
+        System.out.println("Bine ai venit " + admin.getFirstName() + " " + admin.getLastname()+"!");
+        System.out.println("");
         System.out.println("Apasati tasta 1 pentru a vedea toti studentii");
         System.out.println("Apasati tasta 2 pentru a elimina un student");
         System.out.println("Apasati tasta 3 pentru a vedea toate cursurile");

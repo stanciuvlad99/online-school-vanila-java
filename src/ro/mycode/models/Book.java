@@ -1,8 +1,5 @@
 package ro.mycode.models;
 
-import java.sql.Timestamp;
-import java.util.StringTokenizer;
-
 public class Book {
     private int id=0;
     private int studentId=0;
