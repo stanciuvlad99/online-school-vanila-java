@@ -13,15 +13,20 @@ public class ControlAdmin {
     private final String FINAL_PATH="C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\admin.txt";
     private ArrayList<Admin> admins;
 
-    public ControlAdmin(){
-        this.admins=new ArrayList<>();
-        load();
+    public ControlAdmin(ArrayList<Admin> admins){
+        this.admins=admins;
     }
 
-    private void load(){
+    public ControlAdmin(){
+        this.admins=new ArrayList<>();
+        load(FINAL_PATH);
+    }
+
+     public void load(String path){
         try {
-            File file = new File(FINAL_PATH);
+            File file = new File(path);
             Scanner scanner = new Scanner(file);
+            admins.clear();
             while (scanner.hasNextLine()){
                 String text=scanner.nextLine();
                 Admin admin = new Admin(text);
@@ -51,17 +56,22 @@ public class ControlAdmin {
 
     //todo: functie ce returneaza toti adminii
     public String toSave(){
+        if (admins.size()==0){
+            return "";
+        }
+        int i=0;
         String admini="";
-        for (int i=0; i<admins.size(); i++){
+        for (i=0; i<admins.size()-1; i++){
             admini+=admins.get(i).toSave()+"\n";
         }
+        admini+=admins.get(i).toSave();
         return admini;
     }
 
     //todo: functie ce salveaza in fiser text admin
-    public void save(){
+    public void save(String path){
         try {
-            File file = new File(FINAL_PATH);
+            File file = new File(path);
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             printWriter.print(toSave());
