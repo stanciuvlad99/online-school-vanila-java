@@ -15,21 +15,24 @@ public class ControlStudent {
 
     private final  String FILE_PATH="C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\studenti.txt";
 
-    public ControlStudent() {
-        this.students = new ArrayList<>();
-
-        load();
+    public ControlStudent(ArrayList<Student> students){
+        this.students=students;
     }
 
+    public ControlStudent (){
+        this.students=new ArrayList<>();
+        load(FILE_PATH);
+    }
 
-    public void load() {
+    public void load(String path) {
 
         try {
 
-            File file = new File(FILE_PATH);
+            File file = new File(path);
 
 
             Scanner scanner = new Scanner(file);
+            this.students.clear();
 
             while (scanner.hasNextLine()) {
 
@@ -72,7 +75,7 @@ public class ControlStudent {
         }
     }
 
-    //functie ce returneza studentul, primeste email ca parametru
+    //todo: functie ce returneza studentul, primeste email ca parametru
     public Student emailStudent(String email) {
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getEmail().equals(email)) {
@@ -82,7 +85,7 @@ public class ControlStudent {
         return null;
     }
 
-    //functie ce face update informatiilor studentilor, primeste constructor ca parametru
+    //todo: functie ce face update informatiilor studentilor, primeste constructor ca parametru
     public void update(Student student) {
         Student update = emailStudent(student.getEmail());
 
@@ -103,7 +106,7 @@ public class ControlStudent {
         }
     }
 
-    //functie ce elimina student din lista, primeste email ca parametru
+    //todo: functie ce elimina student din lista, primeste email ca parametru
     public void delete(String email) {
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getEmail().equals(email)) {
@@ -181,20 +184,27 @@ public class ControlStudent {
 
     //todo: functie ce returneaza toti studentii
     public String toSave() {
+
+        if(this.students.size()==0){
+
+            return  "";
+        }
+        int i=0;
         String studenti = "";
-        for (int i = 0; i < students.size(); i++) {
+        for (i = 0; i < students.size()-1; i++) {
             studenti +=students.get(i).toSave()+"\n";
         }
+        studenti +=students.get(i).toSave();
         return studenti;
     }
 
 
     //todo: functie ce salveaza in fisier text studenti
-    public void save(){
+    public void save(String path){
 
         try{
 
-            File file = new File(FILE_PATH);
+            File file = new File(path);
 
             FileWriter fileWriter = new FileWriter(file);
 
@@ -208,6 +218,11 @@ public class ControlStudent {
 
             e.printStackTrace();
         }
+    }
+
+    //todo: functie ce returneaza carti studenti sunt in lista
+    public int numarStudenti(){
+        return students.size();
     }
 
 }

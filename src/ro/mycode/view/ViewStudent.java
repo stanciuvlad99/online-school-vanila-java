@@ -94,9 +94,9 @@ public class ViewStudent {
     }
 
     private void afisareEnrolments() {
-        ArrayList<Enrolment> enrolments = controlEnrolment.inscriereStudent(student.getId());
+        ArrayList<Enrolment> enrolments = controlEnrolment.studentEnrolmentsFindById(student.getId());
         for (int i = 0; i < enrolments.size(); i++) {
-            Course course = controlCourse.findByid(enrolments.get(i).getCourseId());
+            Course course = controlCourse.findById(enrolments.get(i).getCourseId());
             System.out.println(course.descriere());
         }
 
@@ -216,7 +216,7 @@ public class ViewStudent {
 
 
     private void cursFrecventat() {
-        Course course = controlCourse.findByid(controlEnrolment.idCelMaiFrecventatcurs());
+        Course course = controlCourse.findById(controlEnrolment.idCelMaiFrecventatCurs());
         System.out.println(course.descriere());
 
     }

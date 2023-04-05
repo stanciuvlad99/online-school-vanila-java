@@ -106,7 +106,7 @@ public class ViewAdmin {
         String numeCurs = scanner.nextLine();
         Course course = controlCourse.findByName(numeCurs);
         if (course != null) {
-            boolean enrolment = controlEnrolment.studentiCursanti(controlCourse.idCurs(numeCurs));
+            boolean enrolment = controlEnrolment.studentiCursanti(controlCourse.returnIdCurs(numeCurs));
             if (enrolment == false) {
                 controlCourse.delete(numeCurs);
                 System.out.println("Cursul a fost eliminat din baza de date");
@@ -131,7 +131,7 @@ public class ViewAdmin {
             String departament = scanner.nextLine();
             System.out.println("Introduceti noul id al cursului");
             int id = Integer.parseInt(scanner.nextLine());
-            controlCourse.updateIdDepartament(new Course(id, course.getName(), departament));
+            controlCourse.update(new Course(id, course.getName(), departament));
             System.out.println("Cursului i s-a facut update");
         } else {
             System.out.println("Cursul " + numeCurs + " nu exista");

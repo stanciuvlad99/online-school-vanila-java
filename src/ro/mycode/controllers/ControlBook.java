@@ -2,6 +2,7 @@ package ro.mycode.controllers;
 
 import ro.mycode.models.Book;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -13,17 +14,20 @@ public class ControlBook {
     private ArrayList<Book>books;
     private final String FINAL_PATH="C:\\mycode\\OOP\\Incapsularea\\Teorie2\\src\\ro\\mycode\\data\\books.txt";
 
+    public ControlBook(ArrayList<Book> books){
+        this.books=books;
+    }
 
     public ControlBook(){
         this.books=new ArrayList<>();
-        load();
+        load(FINAL_PATH);
     }
 
-    private void load(){
+    public void load(String path){
         try {
-            File file = new File(FINAL_PATH);
+            File file = new File(path);
             Scanner scanner = new Scanner(file);
-
+            books.clear();
             while (scanner.hasNextLine()){
                 String linie=scanner.nextLine();
                 Book book = new Book(linie);
@@ -35,9 +39,9 @@ public class ControlBook {
 
     }
 
-    //todo: CRUD
-    //functie ce arata daca exita in lista un anumit student id
-    private boolean findByStudentId(int idStudent){
+
+    //todo: functie ce arata daca exita in lista un anumit student id
+    public boolean findByStudentId(int idStudent){
         for (int i=0; i<books.size(); i++){
             if (books.get(i).getId()==idStudent){
                 return true;
@@ -46,19 +50,19 @@ public class ControlBook {
         return false;
     }
 
-    //functie ce creaza o carte, primeste constructor ca parametru
+    //todo: functie ce creaza o carte, primeste constructor ca parametru
     public boolean create(Book book){
         return findByStudentId(book.getId())==false?this.books.add(book):false;
     }
 
-    //functie de afiseaza cartile din lista
+    //todo: functie de afiseaza cartile din lista
     public void read(){
         for (int i=0; i<books.size(); i++){
             System.out.println(this.books.get(i).descriere());
         }
     }
 
-    //functie ce returneaza cartea, primeste id student ca parametru
+    //todo: functie ce returneaza cartea, primeste id student ca parametru
     public Book findByIdStudent(int idStudent){
         for (int i=0; i<books.size(); i++){
             if (books.get(i).getStudentId()==idStudent){
@@ -133,7 +137,7 @@ public class ControlBook {
     //todo:functie ce genereaza un nou id valabil
     public int nextId() {
         if (this.books.size() == 0) {
-            return 1;
+            return -1;
         }
         return this.books.get(this.books.size() - 1).getId() + 1;
     }
@@ -161,17 +165,22 @@ public class ControlBook {
 
     //todo:functie ce afiseaza toate cartile
     public String toSave(){
+        if (books.size()==0){
+            return "";
+        }
+        int i=0;
         String carti="";
-        for (int i=0; i<books.size(); i++){
+        for (i=0; i<books.size()-1; i++){
             carti+=books.get(i).toSave()+"\n";
         }
+        carti+=books.get(i).toSave();
         return carti;
     }
 
     //todo: functie ce salveaza in fisier text book
-    public void save(){
+    public void save(String path){
         try {
-            File file = new File(FINAL_PATH);
+            File file = new File(path);
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             printWriter.print(toSave());

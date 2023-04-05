@@ -15,13 +15,18 @@ public class ControlEnrolment {
 
     public ControlEnrolment() {
         this.enrolments = new ArrayList<>();
-        load();
+        load(FILE_PATH);
     }
 
-    private void load() {
+    public ControlEnrolment(ArrayList<Enrolment> enrolments){
+        this.enrolments=enrolments;
+    }
+
+    public void load(String path) {
         try {
-            File file = new File(FILE_PATH);
+            File file = new File(path);
             Scanner scanner = new Scanner(file);
+            enrolments.clear();
             while (scanner.hasNextLine()) {
                 String linie = scanner.nextLine();
                 Enrolment enrolment = new Enrolment(linie);
@@ -32,9 +37,7 @@ public class ControlEnrolment {
         }
     }
 
-    //todo: CRUD
-
-    //functie ce arata daca exist in lista o anumita inscriere, primeste id student ca paramatru
+    //todo: functie ce arata daca exist in lista o anumita inscriere, primeste id student ca paramatru
     public boolean findByIdStudent(int idStudent) {
         for (int i = 0; i < enrolments.size(); i++) {
             if (enrolments.get(i).getStudentId() == idStudent) {
@@ -44,19 +47,19 @@ public class ControlEnrolment {
         return false;
     }
 
-    //functie ce adauga o inscriere pe lista, primeste constructor ca parametru
+    //todo: functie ce adauga o inscriere pe lista, primeste constructor ca parametru
     public boolean create(Enrolment enrolment) {
         return findByIdStudent(enrolment.getStudentId()) == false ? this.enrolments.add(enrolment) : false;
     }
 
-    //functie ce afiseaza lista de inscrieri
-    public void read() {
+    //todo: functie ce afiseaza lista de inscrieri
+    public void read(String path) {
         for (int i = 0; i < enrolments.size(); i++) {
             System.out.println(enrolments.get(i).descriere());
         }
     }
 
-    //functie ce returnaza inscrierea dupa id student, primeste constructoe ca parametru
+    //todo: functie ce returnaza inscrierea dupa id student, primeste constructoe ca parametru
     public Enrolment idStudent(int idStudent) {
         for (int i = 0; i < enrolments.size(); i++) {
             if (enrolments.get(i).getStudentId() == idStudent) {
@@ -66,7 +69,7 @@ public class ControlEnrolment {
         return null;
     }
 
-    //functie ce face update informatiilor, primeste constructor parametru
+    //todo: functie ce face update informatiilor, primeste constructor parametru
     public void update(Enrolment enrolment) {
         Enrolment update = idStudent(enrolment.getStudentId());
 
@@ -80,7 +83,7 @@ public class ControlEnrolment {
 
 
     //todo:funcntie ce primeste ca parametru id unui student si returneaza toate enrolmenturile studentului
-    public ArrayList<Enrolment> inscriereStudent(int idStudent) {
+    public ArrayList<Enrolment> studentEnrolmentsFindById(int idStudent) {
         ArrayList<Enrolment> enrolmentsStudent = new ArrayList<>();
         for (int i = 0; i < enrolments.size(); i++) {
             if (enrolments.get(i).getStudentId() == idStudent) {
@@ -153,12 +156,12 @@ public class ControlEnrolment {
     //todo:functie ce returneaza id cursului cu frecventa maxima
 
 
-    public int idCelMaiFrecventatcurs(){
+    public int idCelMaiFrecventatCurs(){
 
         return  pozitieElementMaxim(frecventaCursurilor());
     }
 
-    //todo: functie ce daca studentii participa la un curs, primeste curs id ca parametru
+    //todo: functie ce returneaza daca studentii participa la un curs, primeste curs id ca parametru
     public boolean studentiCursanti(int cursId){
         for (int i=0; i<enrolments.size(); i++){
             if (enrolments.get(i).getCourseId()==cursId){
@@ -170,17 +173,22 @@ public class ControlEnrolment {
 
     //todo: functie ce returnaza toate inscrierile
     public String toSave(){
+        if (enrolments.size()==0){
+            return "";
+        }
+        int i=0;
         String enrolments="";
-        for (int i = 0; i< this.enrolments.size(); i++){
+        for (i = 0; i< this.enrolments.size()-1; i++){
             enrolments+= this.enrolments.get(i).toSave()+"\n";
         }
+        enrolments+= this.enrolments.get(i).toSave();
         return enrolments;
     }
 
     //todo: functie ce salveaza in fisier text enrolment
-    public void save(){
+    public void save(String path){
         try {
-            File file = new File(FILE_PATH);
+            File file = new File(path);
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             printWriter.print(this.toSave());
@@ -188,6 +196,11 @@ public class ControlEnrolment {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    //todo: functie ce returneaza toate inscrierile
+    public int numarInscrieri(){
+        return this.enrolments.size();
     }
 
 }

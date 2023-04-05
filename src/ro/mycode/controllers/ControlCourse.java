@@ -14,13 +14,18 @@ public class ControlCourse {
 
     public ControlCourse() {
         this.courses = new ArrayList<>();
-        load();
+        load(FILE_PATH);
     }
 
-    private void load() {
+    public ControlCourse(ArrayList<Course> courses){
+        this.courses=courses;
+    }
+
+    public void load(String path) {
         try {
-            File file = new File(FILE_PATH);
+            File file = new File(path);
             Scanner scanner = new Scanner(file);
+            courses.clear();
             while (scanner.hasNextLine()) {
                 String linie = scanner.nextLine();
                 Course course = new Course(linie);
@@ -54,19 +59,9 @@ public class ControlCourse {
         }
     }
 
-    //functie ce returneaza cursul, primeste nume ca parametru
-    public Course numeCurs(String nume) {
-        for (int i = 0; i < courses.size(); i++) {
-            if (courses.get(i).getName().equals(nume)) {
-                return courses.get(i);
-            }
-        }
-        return null;
-    }
-
     //functie ce face update informatiilor, primeste constructor ca parametru
     public void update(Course course) {
-        Course update = numeCurs(course.getName());
+        Course update = findByName(course.getName());
 
         if (course.getDepartment().equals("") == false) {
             update.setDepartment(course.getDepartment());
@@ -76,7 +71,7 @@ public class ControlCourse {
         }
     }
 
-    //functie ce elimina cusruri din lista
+    //todo: functie ce elimina cusruri din lista
     public Course delete(String nume) {
         for (int i = 0; i < courses.size(); i++) {
             if (courses.get(i).getName().equals(nume)) {
@@ -87,7 +82,7 @@ public class ControlCourse {
     }
 
     //todo:functie ce primeste ca parametru  id curs si returneaza cursul cu id respectiv
-    public Course findByid(int idCurs) {
+    public Course findById(int idCurs) {
         for (int i = 0; i < courses.size(); i++) {
             if (courses.get(i).getId() == idCurs) {
                 return courses.get(i);
@@ -106,18 +101,8 @@ public class ControlCourse {
         return null;
     }
 
-    //todo:functie ce elimina cursul din baza de date, primeste numele cursului ca parametru
-    public Course removeCursByName(String numeCurs) {
-        for (int i = 0; i < courses.size(); i++) {
-            if (courses.get(i).getName().equals(numeCurs)) {
-                return courses.remove(i);
-            }
-        }
-        return null;
-    }
-
     //todo: functie ce returneaza id-ul cursului, primeste nume ca parametru
-    public int idCurs(String name) {
+    public int returnIdCurs(String name) {
         for (int i = 0; i < courses.size(); i++) {
             if (courses.get(i).getName().equals(name)) {
                 return courses.get(i).getId();
@@ -126,27 +111,9 @@ public class ControlCourse {
         return -1;
     }
 
-//    public Course returnIdCurs(String name){
-//        for (int i=0; i<courses.size(); i++){
-//            if (courses.get(i).getName().equals(name));
-//            return courses.get(i).getId()
-//        }
-//        return null
-//    }
-
-    //todo: functie ce face update cursurilor, primeste constructor ca parametru
-    public void updateIdDepartament(Course course) {
-        Course update = findByName(course.getName());
-        if ((course.getId() == 0) == false) {
-            update.setId(course.getId());
-        }
-        if (course.getDepartment().equals("") == false) {
-            update.setDepartment(course.getDepartment());
-        }
-    }
 
     //todo: functie ce returneaza departament, primeste nume curs ca parametru
-    public Course returnNumeCurs(String department) {
+    public Course findByDepartment(String department) {
         for (int i = 0; i < courses.size(); i++) {
             if (courses.get(i).getDepartment().equals(department)) {
                 return courses.get(i);
@@ -158,7 +125,7 @@ public class ControlCourse {
 
     //todo: functie ce face update numelui cursului, primeste constructor ca parametru
     public void updateName(Course course) {
-        Course update = returnNumeCurs(course.getDepartment());
+        Course update = findByDepartment(course.getDepartment());
         if (course.getName().equals("") == false) {
             update.setName(course.getName());
         }
@@ -169,28 +136,24 @@ public class ControlCourse {
         this.courses.add(course);
     }
 
-
-    //todo: functie ce genereaza un noi id valid
-    public int nextId() {
-        if (this.courses.size() == 0) {
-            return -1;
-        }
-        return this.courses.get(this.courses.size() - 1).getId() + 1;
-    }
-
     //todo: functie ce returneaza toate cursurile
     public String toSave(){
+        if (courses.size()==0){
+            return "";
+        }
+        int i=0;
         String cursuri="";
-        for (int i=0; i<courses.size(); i++){
+        for (i=0; i<courses.size()-1; i++){
             cursuri+=courses.get(i).toSave()+"\n";
         }
+        cursuri+=courses.get(i).toSave();
         return cursuri;
     }
 
     //todo: functie ce salveaza in fisierul text courses
-    public void save(){
+    public void save(String path){
         try {
-            File file = new File(FILE_PATH);
+            File file = new File(path);
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             printWriter.print(this.toSave());
