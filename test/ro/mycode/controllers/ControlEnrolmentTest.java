@@ -89,23 +89,23 @@ class ControlEnrolmentTest {
     @Test
     public void testInscriereStudent() {
         //etapa 1 //facem o lista de inscrieri
-        ArrayList<Enrolment> expected = new ArrayList<>();
+        ArrayList<Enrolment> enrolments = new ArrayList<>();
         Enrolment enrolment = new Enrolment("1,1,1");
         Enrolment enrolment1 = new Enrolment("2,1,2");
-        Enrolment enrolment2 = new Enrolment("3,1,3");
-        expected.add(enrolment);
-        expected.add(enrolment1);
-        expected.add(enrolment2);
+        Enrolment enrolment2 = new Enrolment("3,3,3");
+        enrolments.add(enrolment);
+        enrolments.add(enrolment1);
+        enrolments.add(enrolment2);
 
-        ControlEnrolment controlEnrolment = new ControlEnrolment(expected);
+        ControlEnrolment controlEnrolment = new ControlEnrolment(enrolments);
 
-        ArrayList<Enrolment> enrolments = null;
-        for (int i = 0; i < expected.size(); i++) {
-            enrolments = controlEnrolment.studentEnrolmentsFindById(expected.get(i).getStudentId());
-
+        ArrayList<Enrolment> list = null;
+        for (int i = 0; i < enrolments.size(); i++) {
+            list = controlEnrolment.studentEnrolmentsFindById(1);
         }
+        int expected=2;
 
-        assertEquals(expected.size(), enrolments.size());
+        assertEquals(expected, list.size());
 
     }
 
