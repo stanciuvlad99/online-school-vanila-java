@@ -145,9 +145,12 @@ class ControlBookTest {
 
         ArrayList<Book> list = null;
         for (int i=0; i<books.size(); i++){
-            list=controlBook.cartiStudent(books.get(i).getStudentId());
+            int studentId=1;
+            list=controlBook.cartiStudent(studentId);
         }
-        assertEquals(books.size(),list.size());
+        int expected=3;
+
+        assertEquals(expected,list.size());
     }
 
     @Test

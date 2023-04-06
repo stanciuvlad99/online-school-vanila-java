@@ -1,5 +1,6 @@
 package ro.mycode.controllers;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import ro.mycode.models.Admin;
 
@@ -71,7 +72,7 @@ class ControlAdmintest {
         assertEquals(controlAdmin.findByEmailPassword(admin1.getEmail(), admin1.getPassword()).descriere(), expected1);
     }
 
-    @Test
+    @AfterEach
     public void clear(){
         ControlAdmin controlAdmin = new ControlAdmin(new ArrayList<>());
         controlAdmin.save("C:\\mycode\\OOP\\Incapsularea\\Teorie2\\test\\data\\test.admin.txt");
